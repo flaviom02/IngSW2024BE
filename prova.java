@@ -1,4 +1,5 @@
 public class prova {
-    int n;
+    int n =5;
     int a, b, c;
+    System.out.println(n);
 }
