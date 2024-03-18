@@ -1,3 +1,14 @@
 spring:
   application:
     name: MicroservizioBase
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: test
+    url: jdbc:mysql://localhost:3306/test_schema
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto:
+        update
+      dialect:
+        org.hibernate.dialect.MySQL8Dialect
