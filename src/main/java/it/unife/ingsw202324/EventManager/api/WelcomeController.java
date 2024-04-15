@@ -1,4 +1,4 @@
-package it.unife.ingsw202324.MicroservizioBase.api;
+package it.unife.ingsw202324.EventManager.api;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

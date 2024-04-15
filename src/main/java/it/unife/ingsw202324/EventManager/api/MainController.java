@@ -1,7 +1,7 @@
-package it.unife.ingsw202324.MicroservizioBase.api;
+package it.unife.ingsw202324.EventManager.api;
 
-import it.unife.ingsw202324.MicroservizioBase.models.MyTable;
-import it.unife.ingsw202324.MicroservizioBase.services.MyService;
+import it.unife.ingsw202324.EventManager.models.MyTable;
+import it.unife.ingsw202324.EventManager.services.MyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

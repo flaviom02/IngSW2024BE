@@ -1,7 +1,7 @@
-package it.unife.ingsw202324.MicroservizioBase.services;
+package it.unife.ingsw202324.EventManager.services;
 
-import it.unife.ingsw202324.MicroservizioBase.models.MyTable;
-import it.unife.ingsw202324.MicroservizioBase.repositories.MyRepository;
+import it.unife.ingsw202324.EventManager.models.MyTable;
+import it.unife.ingsw202324.EventManager.repositories.MyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

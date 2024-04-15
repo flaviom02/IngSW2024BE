@@ -1,4 +1,4 @@
-package it.unife.ingsw202324.MicroservizioBase.models;
+package it.unife.ingsw202324.EventManager.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

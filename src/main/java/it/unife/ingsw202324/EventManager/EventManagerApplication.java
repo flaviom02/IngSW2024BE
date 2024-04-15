@@ -1,4 +1,4 @@
-package it.unife.ingsw202324.MicroservizioBase;
+package it.unife.ingsw202324.EventManager;
 
 
 
@@ -11,10 +11,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class MicroservizioBaseApplication {
+public class EventManagerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MicroservizioBaseApplication.class, args);
+		SpringApplication.run(EventManagerApplication.class, args);
 	}
 
 
