@@ -10,18 +10,13 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-/* Modello della taballa
-* Le annotation indicano che questa classe è un entity bean,
-* mappa una tabella che ha un nome fisico "my_table",
-* che i costruttori sono generici e auto creati dal plugin lombok,
-* e che lombok creerà anche tutti i getter e setter */
 @Entity
 @Table(name = "events")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Events {
-    @Id /* Annotation per definire la primary key della tabella  */
+    @Id
     @SequenceGenerator(name="EVID_GEN", sequenceName="EVENT_ID_GEN", allocationSize=1)
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EVID_GEN")
     private Long event_id;
