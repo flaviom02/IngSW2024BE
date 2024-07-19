@@ -11,11 +11,16 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/events")
-@CrossOrigin(origins = "http://localhost:8081")  // Permette richieste dal frontend Vue.js
+
 public class EventsController {
 
     @Autowired
     private EventService eventsService;
+
+    @RequestMapping("/test")
+    public String test() {
+        return "Test";
+    }
 
     @GetMapping
     public List<Events> getAllEvents() {
