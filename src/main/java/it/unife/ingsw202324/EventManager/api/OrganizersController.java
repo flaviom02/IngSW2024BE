@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/organizers")
+@CrossOrigin(origins = "http://localhost:8081")  // Permette richieste dal frontend Vue.js
 public class OrganizersController {
 
     @Autowired
