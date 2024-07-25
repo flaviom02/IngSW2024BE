@@ -19,6 +19,7 @@ public class Categories {
     private Long category_id;
 
     private String name;
+    private boolean deleted;
 
     @ManyToMany
     @JoinTable(

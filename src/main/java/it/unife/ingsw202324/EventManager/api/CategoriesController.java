@@ -17,11 +17,29 @@ public class CategoriesController {
     @Autowired
     private CategoriesService categoriesService;
 
-    @GetMapping
+    // Restituisce tutte le categorie
+    @GetMapping("/getall")
     public List<Categories> getAllCategories() {
         return categoriesService.getAllCategories();
     }
 
+    // Restituisce lista di categorie con possibilità di filtrare quelle eliminate
+    @GetMapping("/getlist")
+    public List<Categories> getAvailableCategories(@RequestParam(name="deleted", defaultValue="false") String deleted) {
+        return switch (deleted.toLowerCase()) {
+            case "true" -> categoriesService.getCategoryByDeleted(true);
+            case "false" -> categoriesService.getCategoryByDeleted(false);
+            default -> categoriesService.getAllCategories();
+        };
+    }
+
+    // Permette di avviare la sincronizzazione delle categorie con il servizio remoto manualmente
+    @RequestMapping("/sync")
+    public String syncCategories() {
+        return categoriesService.syncCategories();
+    }
+
+    // Restituisce una categoria dato il suo id
     @GetMapping("/{id}")
     public ResponseEntity<Categories> getCategoryById(@PathVariable Long id) {
         Optional<Categories> category = categoriesService.getCategoryById(id);
@@ -47,9 +65,12 @@ public class CategoriesController {
         }
     }
 
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
         categoriesService.deleteCategory(id);
         return ResponseEntity.noContent().build();
     }
+
+
 }

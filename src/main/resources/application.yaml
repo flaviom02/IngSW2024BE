@@ -12,3 +12,8 @@ spring:
         update
       dialect:
         org.hibernate.dialect.MySQL8Dialect
+  properties:
+    sericeUrls:
+      categories: http://localhost:3001/api/
+    scheduleInterval:
+      categories: 300000
