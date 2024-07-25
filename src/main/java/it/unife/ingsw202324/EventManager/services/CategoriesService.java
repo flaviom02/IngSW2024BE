@@ -59,34 +59,29 @@ public class CategoriesService {
         String okMessage = "Sincronizzazione completata";
 
         logger.info("Avvio sincronizzazione categorie");
-
+        
+        // Chiamata al servizio remoto per ottenere le categorie
         String response;
         try {
             response = TemplateRestConsumer.callREST("categories/", categoryUrl, false);
+
+            logger.debug("Risposta dal REST service: " + response); // Log the response for debugging
+
+            // Eseguo il parsing della risposta JSON e salvo le categorie nel database
+            ObjectMapper mapper = new ObjectMapper();
+            List<Categories> categoriesList = mapper.readValue(response, new TypeReference<>() {
+            });
+
+            categoriesRepository.saveAll(categoriesList); // Salvo le categorie nel database
+
+            logger.info(okMessage);
+            return okMessage;
+
         } catch (Exception e) {
             logger.error(errorMessage, e);
             return errorMessage + ": " + e.getMessage();
         }
 
-        // Eseguo il parsing della risposta JSON e salvo le categorie nel database
-        ObjectMapper mapper = new ObjectMapper();
-        if (response != null) {
-            try {
-                List<Categories> categoriesList = mapper.readValue(response, new TypeReference<>() {
-                });
-                categoriesRepository.saveAll(categoriesList);
-            } catch (Exception e) {
-                logger.error(errorMessage, e);
-                return errorMessage + ": " + e.getMessage();
-            }
-        } else {
-            errorMessage = errorMessage + ": risposta nulla";
-            logger.error(errorMessage);
-            return errorMessage;
-        }
-
-        logger.info(okMessage);
-        return okMessage;
     }
 
     // Esegue la sincronizzazione delle categorie con il servizio remoto ad intervalli regolari
