@@ -21,6 +21,9 @@ public class Events {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EVID_GEN")
     private Long event_id;
 
+    @Column(columnDefinition = "TEXT")
+    private String url_img;
+
     private String name;
     private String description;
     private Date date;
