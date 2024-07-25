@@ -13,7 +13,7 @@ spring:
       dialect:
         org.hibernate.dialect.MySQL8Dialect
   properties:
-    sericeUrls:
+    serviceUrls:
       categories: http://localhost:3001/api/
     scheduleInterval:
       categories: 300000

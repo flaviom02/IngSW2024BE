@@ -22,7 +22,7 @@ public class TemplateRestConsumer {
         if(useMock)
             uriBase = uriBaseMock;
 
-        logger.info("Calling REST service: " + uriBase + resourceName);
+        logger.info("Calling REST service: {}{}", uriBase, resourceName);
 
 
         return restClient.get()

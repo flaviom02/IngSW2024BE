@@ -21,7 +21,7 @@ public class CategoriesService {
 
     private static final Logger logger = (Logger) LoggerFactory.getLogger(CategoriesService.class);
 
-    @Value("${spring.properties.sericeUrls.categories}")
+    @Value("${spring.properties.serviceUrls.categories}")
     private String categoryUrl;
 
     public List<Categories> getAllCategories() {
@@ -65,7 +65,7 @@ public class CategoriesService {
         try {
             response = TemplateRestConsumer.callREST("categories/", categoryUrl, false);
 
-            logger.debug("Risposta dal REST service: " + response); // Log the response for debugging
+            logger.debug("Risposta dal REST service: {}", response); // Log the response for debugging
 
             // Eseguo il parsing della risposta JSON e salvo le categorie nel database
             ObjectMapper mapper = new ObjectMapper();
