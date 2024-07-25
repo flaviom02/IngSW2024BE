@@ -25,11 +25,12 @@ public class CategoriesController {
 
     // Restituisce lista di categorie con possibilità di filtrare quelle eliminate
     @GetMapping("/getlist")
-    public List<Categories> getAvailableCategories(@RequestParam(name="deleted", defaultValue="false") String deleted) {
+    public List<Categories> getCategories(@RequestParam(name="deleted", defaultValue="false") String deleted) {
         return switch (deleted.toLowerCase()) {
             case "true" -> categoriesService.getCategoryByDeleted(true);
             case "false" -> categoriesService.getCategoryByDeleted(false);
-            default -> categoriesService.getAllCategories();
+            case "all" -> categoriesService.getAllCategories();
+            default -> throw new IllegalArgumentException("Invalid value for 'deleted': " + deleted);
         };
     }
 
