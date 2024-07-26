@@ -33,6 +33,7 @@ public class EventService {
             event.setTime(eventDetails.getTime());
             event.setStatus(eventDetails.getStatus());
             event.setAddress(eventDetails.getAddress());
+            event.setTickets(eventDetails.getTickets());
             return eventsRepository.save(event);
         } else {
             return null; // oppure puoi lanciare un'eccezione

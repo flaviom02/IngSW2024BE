@@ -23,8 +23,7 @@ public class TicketTypes {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TICKID_GEN")
     private Long ticket_id;
 
-    private String name;
-    private String details;
+    private String type;
     private BigDecimal price;
 
     @ManyToOne
