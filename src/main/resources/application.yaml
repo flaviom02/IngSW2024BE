@@ -8,10 +8,8 @@ spring:
     username: ingsw
   jpa:
     hibernate:
-      ddl-auto:
-        update
-      dialect:
-        org.hibernate.dialect.MySQL8Dialect
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8Dialect
   properties:
     serviceUrls:
       categories: http://localhost:3001/api/

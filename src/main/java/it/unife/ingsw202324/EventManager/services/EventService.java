@@ -33,6 +33,7 @@ public class EventService {
             event.setTime(eventDetails.getTime());
             event.setStatus(eventDetails.getStatus());
             event.setAddress(eventDetails.getAddress());
+            event.setCategories(eventDetails.getCategories());
             event.setTickets(eventDetails.getTickets());
             return eventsRepository.save(event);
         } else {
@@ -51,6 +52,8 @@ public class EventService {
     private TicketRepository ticketRepository;
 
     public Events createEvent(Events event) {
+
+        System.out.println("Eventi ricevuti : "+ event);
         // Validazione aggiuntiva se necessaria
         for (Categories category : event.getCategories()) {
             if (category.getCategory_id() != null) {

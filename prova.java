@@ -6,9 +6,8 @@ public class prova {
             int n = 5;
             int a, b, c;
             System.out.println(n);
-        }catch (Exeption e)
-        {
-            System.out.println(e.getmessage());
+        }catch (Exception e){
+            n = 5;
             System.exit(1);
         }
     }

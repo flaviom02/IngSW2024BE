@@ -17,6 +17,8 @@ public class EventsController {
     @Autowired
     private EventService eventsService;
 
+
+
     @RequestMapping("/test")
     public String test() {
         return "Test";

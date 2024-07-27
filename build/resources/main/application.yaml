@@ -3,15 +3,13 @@ spring:
     name: EventManager
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: ingsw
+    password: Mazzini2015.
     url: jdbc:mysql://localhost:3306/events_db
-    username: ingsw
+    username: root
   jpa:
     hibernate:
-      ddl-auto:
-        update
-      dialect:
-        org.hibernate.dialect.MySQL8Dialect
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8Dialect
   properties:
     serviceUrls:
       categories: http://localhost:3001/api/
