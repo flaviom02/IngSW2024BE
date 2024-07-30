@@ -56,8 +56,6 @@ public class EventService {
     @Autowired
     private CategoriesRepository categoriesRepository;
 
-    @Autowired
-    private TicketRepository ticketRepository;
 
     public Events createEvent(Events event) {
 
