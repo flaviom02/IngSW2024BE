@@ -5,7 +5,6 @@ import it.unife.ingsw202324.EventManager.models.Events;
 import it.unife.ingsw202324.EventManager.models.TicketTypes;
 import it.unife.ingsw202324.EventManager.repositories.CategoriesRepository;
 import it.unife.ingsw202324.EventManager.repositories.EventsRepository;
-import it.unife.ingsw202324.EventManager.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
