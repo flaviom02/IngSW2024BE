@@ -3,9 +3,9 @@ spring:
     name: EventManager
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: Mazzini2015.
+    password: ingsw
     url: jdbc:mysql://localhost:3306/events_db
-    username: root
+    username: ingsw
   jpa:
     hibernate:
       ddl-auto: update

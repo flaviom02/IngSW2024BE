@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CategoriesRepository extends JpaRepository<Categories, Long> {
+public interface CategoriesRepository extends JpaRepository<Categories, Integer> {
     List<Categories> findByDeleted(boolean deleted);
 }

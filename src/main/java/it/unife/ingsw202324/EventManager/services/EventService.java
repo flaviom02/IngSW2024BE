@@ -9,8 +9,7 @@ import it.unife.ingsw202324.EventManager.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class EventService {
@@ -23,9 +22,12 @@ public class EventService {
     }
 
     public Events updateEvent(Long id, Events eventDetails) {
+        System.out.println("Eventi ricevuti : "+ eventDetails);
+        System.out.println("id : "+ id);
         Optional<Events> optionalEvent = eventsRepository.findById(id);
         if (optionalEvent.isPresent()) {
             Events event = optionalEvent.get();
+            event.setEvent_id(id);
             event.setUrl_img(eventDetails.getUrl_img());
             event.setName(eventDetails.getName());
             event.setDescription(eventDetails.getDescription());
@@ -34,7 +36,13 @@ public class EventService {
             event.setStatus(eventDetails.getStatus());
             event.setAddress(eventDetails.getAddress());
             event.setCategories(eventDetails.getCategories());
-            event.setTickets(eventDetails.getTickets());
+            if (eventDetails.getTickets() != null) {
+                for (TicketTypes ticket : eventDetails.getTickets()) {
+                    ticket.setEvent(event);
+                }
+                event.getTickets().clear();
+                event.getTickets().addAll(eventDetails.getTickets());
+            }
             return eventsRepository.save(event);
         } else {
             return null; // oppure puoi lanciare un'eccezione
@@ -55,18 +63,20 @@ public class EventService {
 
         System.out.println("Eventi ricevuti : "+ event);
         // Validazione aggiuntiva se necessaria
-        for (Categories category : event.getCategories()) {
-            if (category.getCategory_id() != null) {
+        Set<Categories> checkedCategories = new HashSet<>();
+
+        Iterator<Categories> iterator = event.getCategories().iterator();
+        while (iterator.hasNext()) {
+            Categories category = iterator.next();
+            if (category.getCategory_id() != 0) {
                 Categories existingCategory = categoriesRepository.findById(category.getCategory_id()).orElse(null);
                 if (existingCategory != null) {
-                    event.getCategories().add(existingCategory);
+                    checkedCategories.add(existingCategory);
                 }
             }
         }
 
-        for (TicketTypes ticket : event.getTickets()) {
-            ticket.setEvent(event);
-        }
+        event.setCategories(checkedCategories);
 
         return eventsRepository.save(event);
     }

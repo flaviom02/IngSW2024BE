@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MicroservizioBase.iml" filepath="$PROJECT_DIR$/.idea/modules/MicroservizioBase.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/it.unife.ingsw202324.MicroservizioBase.main.iml" filepath="$PROJECT_DIR$/.idea/modules/it.unife.ingsw202324.MicroservizioBase.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/EventManager.main.iml" filepath="$PROJECT_DIR$/.idea/modules/EventManager.main.iml" />
     </modules>
   </component>
 </project>

@@ -1,9 +1,13 @@
 package it.unife.ingsw202324.EventManager.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import java.math.BigDecimal;
 
@@ -26,8 +30,17 @@ public class TicketTypes {
     private String type;
     private BigDecimal price;
 
-    @ManyToOne
-    @JoinColumn(name = "event_id", referencedColumnName = "event_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_id")
+    @JsonBackReference
+    @EqualsAndHashCode.Exclude
     private Events event;
 
+    public String toString() {
+        return "TicketTypes{" +
+                "ticket_id=" + ticket_id +
+                ", type='" + type + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
