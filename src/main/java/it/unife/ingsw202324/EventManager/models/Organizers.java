@@ -18,7 +18,6 @@ public class Organizers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long organizer_id;
 
-    private String name;
     private String email;
 
     @ManyToMany

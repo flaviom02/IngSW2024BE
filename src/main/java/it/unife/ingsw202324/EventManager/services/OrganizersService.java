@@ -30,7 +30,6 @@ public class OrganizersService {
         Optional<Organizers> optionalOrganizer = organizersRepository.findById(id);
         if (optionalOrganizer.isPresent()) {
             Organizers organizer = optionalOrganizer.get();
-            organizer.setName(organizerDetails.getName());
             organizer.setEmail(organizerDetails.getEmail());
             organizer.setCategories(organizerDetails.getCategories());
             return organizersRepository.save(organizer);
