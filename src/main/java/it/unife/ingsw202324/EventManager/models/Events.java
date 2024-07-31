@@ -1,14 +1,13 @@
 package it.unife.ingsw202324.EventManager.models;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
+import lombok.*;
 import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "events")
@@ -16,6 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Events {
+    @Getter
+    @Setter
     @Id
     @SequenceGenerator(name="EVID_GEN", sequenceName="EVENT_ID_GEN", allocationSize=1)
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EVID_GEN")
@@ -31,9 +32,18 @@ public class Events {
     private String status;
     private String address;
 
-    @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY)
-    private List<Categories> categories = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinTable(
+            name = "event_categories",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Categories> categories = new HashSet<>();
 
-    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<TicketTypes> tickets = new ArrayList<>();
+
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @EqualsAndHashCode.Exclude
+    private Set<TicketTypes> tickets = new HashSet<>();
+
 }

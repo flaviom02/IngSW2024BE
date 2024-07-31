@@ -28,7 +28,7 @@ public class CategoriesService {
         return categoriesRepository.findAll();
     }
 
-    public Optional<Categories> getCategoryById(Long id) {
+    public Optional<Categories> getCategoryById(int id) {
         return categoriesRepository.findById(id);
     }
 
@@ -40,12 +40,12 @@ public class CategoriesService {
         return categoriesRepository.save(category);
     }
 
-    public Categories updateCategory(Long id, Categories categoryDetails) {
+    public Categories updateCategory(int id, Categories categoryDetails) {
         Optional<Categories> optionalCategory = categoriesRepository.findById(id);
         if (optionalCategory.isPresent()) {
             Categories category = optionalCategory.get();
             category.setName(categoryDetails.getName());
-            category.setEvents(categoryDetails.getEvents());
+            //category.setEvents(categoryDetails.getEvents());
             category.setOrganizers(categoryDetails.getOrganizers());
             return categoriesRepository.save(category);
         } else {
@@ -90,7 +90,7 @@ public class CategoriesService {
         syncCategories();
     }
 
-    public void deleteCategory(Long id) {
+    public void deleteCategory(int id) {
         categoriesRepository.deleteById(id);
     }
 }

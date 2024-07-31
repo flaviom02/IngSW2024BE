@@ -33,7 +33,7 @@ public class EventsController {
         return event.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @RequestMapping("/create")
     public Events createEvent(@RequestBody Events event) {
         return eventsService.createEvent(event);
     }
@@ -41,6 +41,7 @@ public class EventsController {
     @PutMapping("/{id}")
     public ResponseEntity<Events> updateEvent(@PathVariable Long id, @RequestBody Events eventDetails) {
         Events updatedEvent = eventsService.updateEvent(id, eventDetails);
+
         if (updatedEvent != null) {
             return ResponseEntity.ok(updatedEvent);
         } else {
