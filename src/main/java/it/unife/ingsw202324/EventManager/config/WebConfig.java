@@ -1,4 +1,4 @@
-package it.unife.ingsw202324.EventManager.config;
+/*package it.unife.ingsw202324.EventManager.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,3 +17,4 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true);
     }
 }
+*/

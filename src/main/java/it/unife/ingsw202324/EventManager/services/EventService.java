@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+import static it.unife.ingsw202324.EventManager.services.CategoriesService.prepareCategories;
+
 @Service
 public class EventService {
 
@@ -21,8 +23,8 @@ public class EventService {
     }
 
     public Events updateEvent(Long id, Events eventDetails) {
-        System.out.println("Eventi ricevuti : "+ eventDetails);
-        System.out.println("id : "+ id);
+        System.out.println("Eventi ricevuti : " + eventDetails);
+        System.out.println("id : " + id);
         Optional<Events> optionalEvent = eventsRepository.findById(id);
         if (optionalEvent.isPresent()) {
             Events event = optionalEvent.get();
@@ -34,7 +36,7 @@ public class EventService {
             event.setTime(eventDetails.getTime());
             event.setStatus(eventDetails.getStatus());
             event.setAddress(eventDetails.getAddress());
-            event.setCategories(eventDetails.getCategories());
+            event.setCategories(prepareCategories(eventDetails.getCategories(), categoriesRepository));
             if (eventDetails.getTickets() != null) {
                 for (TicketTypes ticket : eventDetails.getTickets()) {
                     ticket.setEvent(event);
@@ -58,22 +60,9 @@ public class EventService {
 
     public Events createEvent(Events event) {
 
-        System.out.println("Eventi ricevuti : "+ event);
-        // Validazione aggiuntiva se necessaria
-        Set<Categories> checkedCategories = new HashSet<>();
+        System.out.println("Eventi ricevuti : " + event);
 
-        Iterator<Categories> iterator = event.getCategories().iterator();
-        while (iterator.hasNext()) {
-            Categories category = iterator.next();
-            if (category.getCategory_id() != 0) {
-                Categories existingCategory = categoriesRepository.findById(category.getCategory_id()).orElse(null);
-                if (existingCategory != null) {
-                    checkedCategories.add(existingCategory);
-                }
-            }
-        }
-
-        event.setCategories(checkedCategories);
+        event.setCategories(prepareCategories(event.getCategories(), categoriesRepository));
 
         return eventsRepository.save(event);
     }
@@ -82,4 +71,5 @@ public class EventService {
         return eventsRepository.findById(id);
     }
 }
+
 

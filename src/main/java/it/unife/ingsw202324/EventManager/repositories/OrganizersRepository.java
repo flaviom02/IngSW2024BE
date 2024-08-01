@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrganizersRepository extends JpaRepository<Organizers, Long> {
+    void deleteByEmail(String email);
 }

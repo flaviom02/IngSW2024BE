@@ -1,18 +1,24 @@
 package it.unife.ingsw202324.EventManager.services;
 
+import it.unife.ingsw202324.EventManager.models.Categories;
 import it.unife.ingsw202324.EventManager.models.Organizers;
+import it.unife.ingsw202324.EventManager.repositories.CategoriesRepository;
 import it.unife.ingsw202324.EventManager.repositories.OrganizersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
+import static it.unife.ingsw202324.EventManager.services.CategoriesService.prepareCategories;
 
 @Service
 public class OrganizersService {
 
     @Autowired
     private OrganizersRepository organizersRepository;
+
+    @Autowired
+    private CategoriesRepository categoriesRepository;
 
     public List<Organizers> getAllOrganizers() {
         return organizersRepository.findAll();
@@ -23,6 +29,9 @@ public class OrganizersService {
     }
 
     public Organizers createOrganizer(Organizers organizer) {
+
+        organizer.setCategories(prepareCategories(organizer.getCategories(), categoriesRepository));
+
         return organizersRepository.save(organizer);
     }
 
@@ -31,7 +40,7 @@ public class OrganizersService {
         if (optionalOrganizer.isPresent()) {
             Organizers organizer = optionalOrganizer.get();
             organizer.setEmail(organizerDetails.getEmail());
-            organizer.setCategories(organizerDetails.getCategories());
+            organizer.setCategories(prepareCategories(organizerDetails.getCategories(), categoriesRepository));
             return organizersRepository.save(organizer);
         } else {
             return null;
@@ -41,4 +50,6 @@ public class OrganizersService {
     public void deleteOrganizer(Long id) {
         organizersRepository.deleteById(id);
     }
+
+
 }

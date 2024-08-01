@@ -29,10 +29,11 @@ public class Categories {
     )
     @JsonIgnore
     private List<Events> events = new ArrayList<>();
-    /*/
+    /
 
     @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
     private List<Organizers> organizers = new ArrayList<>();
+    */
 
     public Categories(int category_id) {
         this.category_id = category_id;

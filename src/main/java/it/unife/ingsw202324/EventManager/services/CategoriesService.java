@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
 
 @Service
 public class CategoriesService {
@@ -45,8 +45,6 @@ public class CategoriesService {
         if (optionalCategory.isPresent()) {
             Categories category = optionalCategory.get();
             category.setName(categoryDetails.getName());
-            //category.setEvents(categoryDetails.getEvents());
-            category.setOrganizers(categoryDetails.getOrganizers());
             return categoriesRepository.save(category);
         } else {
             return null;
@@ -92,5 +90,22 @@ public class CategoriesService {
 
     public void deleteCategory(int id) {
         categoriesRepository.deleteById(id);
+    }
+
+    public static Set<Categories> prepareCategories(Set<Categories> categories, CategoriesRepository categoriesRepository) {
+
+        Set<Categories> checkedCategories = new HashSet<>();
+
+        Iterator<Categories> iterator = categories.iterator();
+        while (iterator.hasNext()) {
+            Categories category = iterator.next();
+            if (category.getCategory_id() != 0) {
+                Categories existingCategory = categoriesRepository.findById(category.getCategory_id()).orElse(null);
+                if (existingCategory != null) {
+                    checkedCategories.add(existingCategory);
+                }
+            }
+        }
+        return checkedCategories;
     }
 }
