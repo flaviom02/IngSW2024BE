@@ -32,7 +32,7 @@ public class OrganizersController {
         }
     }
 
-    @PostMapping
+    @RequestMapping("/create")
     public Organizers createOrganizer(@RequestBody Organizers organizer) {
         return organizersService.createOrganizer(organizer);
     }

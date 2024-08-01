@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/EventManager.main.iml" filepath="$PROJECT_DIR$/.idea/modules/EventManager.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/it.unife.ingsw202324.EventManager.main.iml" filepath="$PROJECT_DIR$/.idea/modules/it.unife.ingsw202324.EventManager.main.iml" />
     </modules>
   </component>
 </project>
