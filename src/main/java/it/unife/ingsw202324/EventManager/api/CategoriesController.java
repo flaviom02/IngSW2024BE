@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/categories")
-//@CrossOrigin(origins = "http://localhost:8081")  // Permette richieste dal frontend Vue.js
+
 public class CategoriesController {
 
     @Autowired

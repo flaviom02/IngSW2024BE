@@ -92,6 +92,7 @@ public class CategoriesService {
         categoriesRepository.deleteById(id);
     }
 
+    // Controlla che le categorie indicate esistano nel database e le prepara per essere salvate
     public static Set<Categories> prepareCategories(Set<Categories> categories, CategoriesRepository categoriesRepository) {
 
         Set<Categories> checkedCategories = new HashSet<>();

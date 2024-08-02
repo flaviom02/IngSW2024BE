@@ -1,10 +1,11 @@
 package it.unife.ingsw202324.EventManager.services;
 
-import it.unife.ingsw202324.EventManager.models.Categories;
+import ch.qos.logback.classic.Logger;
 import it.unife.ingsw202324.EventManager.models.Events;
 import it.unife.ingsw202324.EventManager.models.TicketTypes;
 import it.unife.ingsw202324.EventManager.repositories.CategoriesRepository;
 import it.unife.ingsw202324.EventManager.repositories.EventsRepository;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ import static it.unife.ingsw202324.EventManager.services.CategoriesService.prepa
 @Service
 public class EventService {
 
+    private static final Logger logger = (Logger) LoggerFactory.getLogger(CategoriesService.class);
+
     @Autowired
     private EventsRepository eventsRepository;
 
@@ -22,9 +25,10 @@ public class EventService {
         return eventsRepository.findAll();
     }
 
+    // Aggiorna un evento esistente con i dati ricevuti
     public Events updateEvent(Long id, Events eventDetails) {
-        System.out.println("Eventi ricevuti : " + eventDetails);
-        System.out.println("id : " + id);
+        logger.info("Eventi ricevuti : {} ", eventDetails);
+        logger.info("id : {}", id);
         Optional<Events> optionalEvent = eventsRepository.findById(id);
         if (optionalEvent.isPresent()) {
             Events event = optionalEvent.get();
@@ -46,7 +50,7 @@ public class EventService {
             }
             return eventsRepository.save(event);
         } else {
-            return null; // oppure puoi lanciare un'eccezione
+            return null;
         }
     }
 
@@ -60,7 +64,7 @@ public class EventService {
 
     public Events createEvent(Events event) {
 
-        System.out.println("Eventi ricevuti : " + event);
+        logger.info("Evento ricevuto {}", event);
 
         event.setCategories(prepareCategories(event.getCategories(), categoriesRepository));
 

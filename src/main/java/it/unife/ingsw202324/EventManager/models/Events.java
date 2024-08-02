@@ -31,8 +31,8 @@ public class Events {
     private Time time;
     private String status;
     private String address;
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,
+            CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinTable(
             name = "event_categories",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -42,7 +42,7 @@ public class Events {
 
 
     @OneToMany(mappedBy = "event", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference // evita il loop infinito
     @EqualsAndHashCode.Exclude
     private Set<TicketTypes> tickets = new HashSet<>();
 

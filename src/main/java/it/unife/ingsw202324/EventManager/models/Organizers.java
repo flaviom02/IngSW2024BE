@@ -18,6 +18,7 @@ public class Organizers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long organizer_id;
 
+    // Aggiungo unique per evitare che due organizzatori abbiano la stessa email
     @Column(unique = true)
     private String email;
 

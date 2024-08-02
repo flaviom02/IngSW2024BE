@@ -30,10 +30,11 @@ public class TicketTypes {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "event_id")
-    @JsonBackReference
+    @JsonBackReference // evita il loop infinito
     @EqualsAndHashCode.Exclude
     private Events event;
 
+    @Override
     public String toString() {
         return "TicketTypes{" +
                 "ticket_id=" + ticket_id +

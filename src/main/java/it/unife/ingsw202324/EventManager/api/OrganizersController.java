@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/organizers")
-//@CrossOrigin(origins = "http://localhost:8081")  // Permette richieste dal frontend Vue.js
+
 public class OrganizersController {
 
     @Autowired
@@ -22,6 +22,7 @@ public class OrganizersController {
         return organizersService.getAllOrganizers();
     }
 
+    // Restituisce un organizzatore dato il suo id
     @GetMapping("/{id}")
     public ResponseEntity<Organizers> getOrganizerById(@PathVariable Long id) {
         Optional<Organizers> organizer = organizersService.getOrganizerById(id);
@@ -37,6 +38,7 @@ public class OrganizersController {
         return organizersService.createOrganizer(organizer);
     }
 
+    // Aggiorna un organizzatore dato il suo id e i dettagli dell'organizzatore nel body della richiesta
     @PutMapping("/{id}")
     public ResponseEntity<Organizers> updateOrganizer(@PathVariable Long id, @RequestBody Organizers organizerDetails) {
         Organizers updatedOrganizer = organizersService.updateOrganizer(id, organizerDetails);

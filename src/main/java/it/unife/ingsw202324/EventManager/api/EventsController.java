@@ -17,16 +17,13 @@ public class EventsController {
     @Autowired
     private EventService eventsService;
 
-    @RequestMapping("/test")
-    public String test() {
-        return "Test";
-    }
-
+    // Restituisce tutti gli eventi
     @GetMapping
     public List<Events> getAllEvents() {
         return eventsService.getAllEvents();
     }
 
+    // Restituisce un evento dato il suo id
     @GetMapping("/{id}")
     public ResponseEntity<Events> getEventById(@PathVariable Long id) {
         Optional<Events> event = eventsService.getEventById(id);
@@ -38,6 +35,7 @@ public class EventsController {
         return eventsService.createEvent(event);
     }
 
+    // Aggiorna un evento dato il suo id e i dettagli dell'evento nel body della richiesta
     @PutMapping("/{id}")
     public ResponseEntity<Events> updateEvent(@PathVariable Long id, @RequestBody Events eventDetails) {
         Events updatedEvent = eventsService.updateEvent(id, eventDetails);

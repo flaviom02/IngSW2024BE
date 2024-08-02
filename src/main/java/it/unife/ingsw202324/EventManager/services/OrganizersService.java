@@ -1,6 +1,5 @@
 package it.unife.ingsw202324.EventManager.services;
 
-import it.unife.ingsw202324.EventManager.models.Categories;
 import it.unife.ingsw202324.EventManager.models.Organizers;
 import it.unife.ingsw202324.EventManager.repositories.CategoriesRepository;
 import it.unife.ingsw202324.EventManager.repositories.OrganizersRepository;
@@ -28,6 +27,7 @@ public class OrganizersService {
         return organizersRepository.findById(id);
     }
 
+    // Crea un nuovo organizzatore con le categorie ricevute
     public Organizers createOrganizer(Organizers organizer) {
 
         organizer.setCategories(prepareCategories(organizer.getCategories(), categoriesRepository));
@@ -35,6 +35,7 @@ public class OrganizersService {
         return organizersRepository.save(organizer);
     }
 
+    // Aggiorna un organizzatore esistente con i dati ricevuti
     public Organizers updateOrganizer(Long id, Organizers organizerDetails) {
         Optional<Organizers> optionalOrganizer = organizersRepository.findById(id);
         if (optionalOrganizer.isPresent()) {
